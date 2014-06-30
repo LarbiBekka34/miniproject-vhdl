@@ -1,0 +1,26 @@
+-------------------------------------------------------
+-- Project : Computer arithmetic, fast adders (3rd year mini project)
+-- Author : Larbi Bekka, Walid Belhadj, Oussama Hemchi 
+-- Date : 10-05-2014
+-- File : gp_gen.vhd
+-- Design : 64-bit Kogge-Stone adder
+------------------------------------------------------
+-- Description : a 1-bit g,p generator 
+-------------------------------------------------------
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY gp_gen IS
+	PORT(
+		x : IN std_logic;
+		y : IN std_logic;
+		g : OUT std_logic;
+		p : OUT std_logic
+	);
+END gp_gen;
+
+ARCHITECTURE arch OF gp_gen IS
+BEGIN
+	g <= x AND y;
+	p <= x XOR y;
+END arch;

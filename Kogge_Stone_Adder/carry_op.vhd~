@@ -1,0 +1,28 @@
+-------------------------------------------------------
+-- Project : Computer arithmetic, fast adders (3rd year mini project)
+-- Author : Larbi Bekka, Walid Belhadj, Oussama Hemchi 
+-- Date : 10-05-2014
+-- File : carry_op.vhd
+-- Design : 64-bit Kogge-Stone adder
+------------------------------------------------------
+-- Description : a carry operator unit
+-------------------------------------------------------
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY carry_op IS
+	PORT(
+		g1 : IN std_logic;
+		p1 : IN std_logic;
+		g2 : IN std_logic;
+		p2 : IN std_logic;
+		go : OUT std_logic;
+		po : OUT std_logic
+	);
+END carry_op;
+
+ARCHITECTURE arch OF carry_op IS
+BEGIN
+	go <= g2 OR (g1 AND p2);
+	po <= P2 AND p1;
+END arch;	
