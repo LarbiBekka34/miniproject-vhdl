@@ -1,0 +1,27 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY RCA_64 IS
+	PORT(x        : IN std_logic_vector(63 downto 0);
+	     y        : IN std_logic_vector(63 downto 0);
+	     c_in     : IN std_logic;
+       	     sum      : OUT std_logic_vector(63 downto 0);
+             c_o      : OUT std_logic;
+END RCA_64;
+
+ARCHITECTURE arch OF RCA_64 IS
+	SIGNAL in_c : std_logic_vector(64 downto 0);
+BEGIN
+	inconc_c(0) <= c_in;
+	
+	for_gen:
+		FOR i in 0 to 63 GENERATE
+			sum(i) <= x(i) XOR y(i) XOR inconc_c(i);
+			in_c(i+1) <= (x(i) AND y(i)) OR (inconc_c(i) AND x(i)) OR (inconc_c(i) AND y(i));
+		END GENERATE;
+	
+	
+	c_o <= in_c(64);
+	
+END arch;		  
+	
